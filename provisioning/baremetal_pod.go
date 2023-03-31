@@ -58,6 +58,7 @@ const (
 	sshKeyEnvVar                     = "IRONIC_RAMDISK_SSH_KEY"
 	externalIpEnvVar                 = "IRONIC_EXTERNAL_IP"
 	externalUrlEnvVar                = "IRONIC_EXTERNAL_URL_V6"
+	ironicCacertEnvVar               = "WEBSERVER_CACERT_FILE"
 	ironicProxyEnvVar                = "IRONIC_REVERSE_PROXY_SETUP"
 	inspectorProxyEnvVar             = "INSPECTOR_REVERSE_PROXY_SETUP"
 	ironicPrivatePortEnvVar          = "IRONIC_PRIVATE_PORT"
@@ -708,6 +709,10 @@ func createContainerMetal3Ironic(images *Images, info *ProvisioningInfo, config 
 			{
 				Name:  ironicPrivatePortEnvVar,
 				Value: useUnixSocket,
+			},
+			{
+				Name:  ironicCacertEnvVar,
+				Value: "true",
 			},
 			buildEnvVar(httpPort, config),
 			buildEnvVar(provisioningIP, config),
